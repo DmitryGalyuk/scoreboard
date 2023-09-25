@@ -9,6 +9,9 @@ export default class Match {
         ) {
             throw new Error("Team name is mandatory and should be string")
         }
+        if (homeTeam === awayTeam) {
+            throw new Error("Team names can not be the same")
+        }
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = 0;

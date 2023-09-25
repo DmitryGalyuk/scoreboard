@@ -32,13 +32,11 @@ test("Match can be finished", () => {
     board.finishMatch("home2", "away2");
     expect(() => { board.getMatch("home2", "away2") }).toThrow()
     expect(board.matches.length).toBe(2);
-
-
 });
 
 test("Summary is ordered based on the total score", () => {
     const board = new Scoreboard();
-    Match.matchNumberCounter = 0;
+    Match.matchNumberCounter = 0; // in tests the static context is saved between test executions, we must reset it in counter sensitive tests
     board.startMatch("home1", "away1");
     board.startMatch("home2", "away2");
     board.startMatch("home3", "away3");
@@ -53,9 +51,35 @@ test("Summary is ordered based on the total score", () => {
     expect(summaryOrder).toEqual([3, 1, 0, 2]);
 });
 
+test("should throw error when updating score for non-existent match", () => {
+    const board = new Scoreboard();
+    board.startMatch("home1", "away1");
 
-// test("should not allow starting a match with same teams");
-// test("should throw error when updating score for non-existent match");
-// test("should throw error when finishing a non-existent match");
-// test("should not allow updates after match is finished");
-// test("should not allow a team to participate in two matches simultaneously");
+    expect(()=>{board.updateScore("home2", "away2", 5, 1)}).toThrow();
+});
+
+test("should throw error when finishing a non-existent match", () => {
+    const board = new Scoreboard();
+    board.startMatch("home1", "away1");
+
+    expect(()=>{board.finishMatch("home2", "away2")}).toThrow();
+});
+
+test("should not allow updates after match is finished", ()=>{
+    const board = new Scoreboard();
+    board.startMatch("home1", "away1");
+    board.startMatch("home2", "away2");
+    board.startMatch("home3", "away3");
+
+    board.finishMatch("home2", "away2");
+    expect(()=>{board.updateScore("home2", "away2", 3, 0)}).toThrow();
+});
+
+test("should not allow a team to participate in two matches simultaneously", ()=> {
+    const board = new Scoreboard();
+    board.startMatch("home1", "away1");
+    board.startMatch("home2", "away2");
+
+    expect(()=>{board.startMatch("home1", "away3");}).toThrow();
+    expect(()=>{board.startMatch("home3", "away1");}).toThrow();
+});

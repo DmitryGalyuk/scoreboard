@@ -41,3 +41,7 @@ test('Match should allow only non-empty string team names', () => {
     expect(() => {new Match('home', [])}).toThrow();
     expect(() => {new Match([], 'away')}).toThrow();
 });
+
+test("Team names within a match can not be the same", () =>{
+    expect(()=> {new Match("a", "a")}).toThrow();
+})

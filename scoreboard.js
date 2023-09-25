@@ -13,6 +13,14 @@ export default class Scoreboard {
     }
 
     startMatch(homeTeam, awayTeam) {
+        // make sure team is not in active match
+        this.matches.forEach(match => {
+            if (match.homeTeam === homeTeam || match.awayTeam === homeTeam
+                || match.homeTeam === awayTeam || match.awayTeam === awayTeam) {
+                    throw new Error("Team can not participate in two matches simultaneously")
+                }
+        });
+
         this.matches.push(new Match(homeTeam, awayTeam));
     }
 
@@ -23,6 +31,10 @@ export default class Scoreboard {
     }
 
     finishMatch(homeTeam, awayTeam) {
+        if (!this.getMatch(homeTeam, awayTeam)) {
+            throw new Error("Can not finish match that is not in progress")
+        }
+        
         this.matches.splice( 
             this.matches.findIndex((m) => { return m.homeTeam === homeTeam && m.awayTeam === awayTeam }),
             1
