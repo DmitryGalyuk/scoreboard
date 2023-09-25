@@ -83,3 +83,12 @@ test("should not allow a team to participate in two matches simultaneously", ()=
     expect(()=>{board.startMatch("home1", "away3");}).toThrow();
     expect(()=>{board.startMatch("home3", "away1");}).toThrow();
 });
+
+test("if no active matches summary returns empty array", ()=> {
+    const board = new Scoreboard();
+    expect(board.summary()).toEqual([]);
+
+    board.startMatch("home1", "away1");
+    board.finishMatch("home1", "away1");
+    expect(board.summary()).toEqual([]);
+})
