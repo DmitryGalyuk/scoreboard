@@ -8,8 +8,7 @@ It stores the result of matches in progress right now, allows to register and co
 - **No Tournaments, Single Participation**: A team cannot participate in two matches at the same time.
 - **Absolute Score Updates**: Score updates use absolute values; no incremental updates.
 - **Immutable Past**: A finished match cannot be restarted or updated.
-- **Start Time Uniqueness**: Matches with the same score are sorted by start time.
-- **No Concurrent Match Starts**: Concurrent match starts at the same exact millisecond may have unpredictable ordering.
+- **Summary is a list of Match objects**: Since we develop the library the result produced by *summary()* is the list of objects, not the formatted string.
 
 ## Technical
 - **Unique Team Names**: Team names are unique identifiers; no two teams share the same name.
@@ -17,3 +16,4 @@ It stores the result of matches in progress right now, allows to register and co
 - **In-Memory Storage**: All match data is stored in-memory.
 - **Positive Integer Scores**: Scores are positive integers; no negative or fractional scores.
 - **String Team Names**: Team names are strings and can't be empty, null, or undefined.
+- **Sorting the matches with the same score**: Since the library is supposed to be simple, not distributed and keeping the data in memory, we can expect that timestamp for two matches can be equal. That is why we will store the static counter of matches and use it to order matches.

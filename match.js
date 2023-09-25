@@ -1,4 +1,7 @@
 export default class Match {
+    // Counter to order matches. Not relying on the timestamp since two Matches can be created within one millisecond
+    static matchNumberCounter = 0;
+
     constructor(homeTeam, awayTeam) {
         if (
             typeof homeTeam !== "string" || typeof awayTeam !== "string"
@@ -10,6 +13,7 @@ export default class Match {
         this.awayTeam = awayTeam;
         this.homeScore = 0;
         this.awayScore = 0;
+        this.matchNumber = Match.matchNumberCounter++;
     }
 
     updateScore(homeScore, awayScore) {
@@ -21,5 +25,9 @@ export default class Match {
         }
         this.homeScore = homeScore;
         this.awayScore = awayScore
+    }
+
+    totalScore() {
+        return this.homeScore + this.awayScore;
     }
 }
