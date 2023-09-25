@@ -42,17 +42,17 @@ test("Summary is ordered based on the total score", () => {
     board.startMatch("home1", "away1");
     board.startMatch("home2", "away2");
     board.startMatch("home3", "away3");
+    board.startMatch("home4", "away4");
 
     board.updateScore("home1", "away1", 2, 2);
     board.updateScore("home2", "away2", 5, 1);
     board.updateScore("home3", "away3", 3, 0);
+    board.updateScore("home4", "away4", 3, 3);
 
     const summaryOrder = board.summary().map(m => m.matchNumber);
-    expect(summaryOrder).toEqual([1, 0, 2]);
+    expect(summaryOrder).toEqual([3, 1, 0, 2]);
 });
 
-// test("Test equal scores ordering")
-// test("Finished match is removed from the summary")
 
 // test("should not allow starting a match with same teams");
 // test("should throw error when updating score for non-existent match");
