@@ -1,7 +1,24 @@
 # Scoreboard library
-This is the library that displays the live results of the **Football matches**.
+This is the library that stores the live results of the **Football matches** and generates the **Score board**.
 
 It stores the result of matches in progress right now, allows to register and complete the match, update the scores and display the summary of matches in progress.
+
+# Examples
+
+``` Javascript
+    const board = new Scoreboard();
+
+    board.startMatch("home1", "away1");
+    board.startMatch("home2", "away2");
+
+    board.updateScore("home1", "away1", 2, 2);
+    board.updateScore("home2", "away2", 5, 1);
+
+    board.finishMatch("home1", "away1");
+    board.finishMatch("home2", "away2");
+
+    board.summary()
+```
 
 # Assumptions
 ## Business
