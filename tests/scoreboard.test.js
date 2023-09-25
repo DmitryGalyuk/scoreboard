@@ -92,3 +92,14 @@ test("if no active matches summary returns empty array", ()=> {
     board.finishMatch("home1", "away1");
     expect(board.summary()).toEqual([]);
 })
+
+test("update score with invalid numbers should throw errrors", ()=>{
+    const board = new Scoreboard();
+    board.startMatch("home", "away")
+    expect(() => { board.updateScore("home", "away", -1, 3) }).toThrow();
+    expect(() => { board.updateScore("home", "away", 1, -3) }).toThrow();
+    expect(() => { board.updateScore("home", "away", "abc", 3) }).toThrow();
+    expect(() => { board.updateScore("home", "away", 1, "def") }).toThrow();
+    expect(() => { board.updateScore("home", "away", 1.3, 3) }).toThrow();
+    expect(() => { board.updateScore("home", "away", 1, 3.4) }).toThrow();
+})

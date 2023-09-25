@@ -29,19 +29,19 @@ test("Match accepts only non-negative integers as scores", () => {
 })
 
 test('Match should allow only non-empty string team names', () => {
-    expect(() => {new Match('', 'away')}).toThrow();
-    expect(() => {new Match('home', '')}).toThrow();
+    expect(() => { new Match('', 'away') }).toThrow();
+    expect(() => { new Match('home', '') }).toThrow();
 
-    expect(() => {new Match('home', 3)}).toThrow();
-    expect(() => {new Match(3, 'away')}).toThrow();
-    
-    expect(() => {new Match('home', {})}).toThrow();
-    expect(() => {new Match({}, 'away')}).toThrow();
-    
-    expect(() => {new Match('home', [])}).toThrow();
-    expect(() => {new Match([], 'away')}).toThrow();
+    expect(() => { new Match('home', 3) }).toThrow();
+    expect(() => { new Match(3, 'away') }).toThrow();
+
+    expect(() => { new Match('home', {}) }).toThrow();
+    expect(() => { new Match({}, 'away') }).toThrow();
+
+    expect(() => { new Match('home', []) }).toThrow();
+    expect(() => { new Match([], 'away') }).toThrow();
 });
 
-test("Team names within a match can not be the same", () =>{
-    expect(()=> {new Match("a", "a")}).toThrow();
+test("Team names within a match can not be the same", () => {
+    expect(() => { new Match("a", "a") }).toThrow();
 })
