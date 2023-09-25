@@ -9,5 +9,26 @@
   "jest": {
     "transform": {},
     "testEnvironment": "jest-environment-node"
-  }
+  },
+  "name": "scoreboard",
+  "description": "Library to store the live results of the Football matches and generate the Score board.",
+  "version": "1.0.0",
+  "main": "scoreboard.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryGalyuk/scoreboard.git"
+  },
+  "keywords": [
+    "football",
+    "scoreboard"
+  ],
+  "author": "Dmitry Galyuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryGalyuk/scoreboard/issues"
+  },
+  "homepage": "https://github.com/DmitryGalyuk/scoreboard#readme"
 }
